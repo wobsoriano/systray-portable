@@ -1,6 +1,8 @@
-# systray-builder
+# systray-portable
 
-A portable version of [go systray](https://github.com/getlantern/systray), using stdin/stdout to communicate with other language. This repo is fork of [systray-portable](https://github.com/felixhao28/systray-portable) but uses [fyne's](https://github.com/fyne-io/systray) tray widget instead (removed GTK dependency and support for legacy linux system tray).
+A portable version of [go systray](https://github.com/getlantern/systray), using stdin/stdout to communicate with other language.
+
+This repo is fork of [systray-portable](https://github.com/felixhao28/systray-portable) but uses [fyne's](https://github.com/fyne-io/systray) tray widget instead (removed GTK dependency and support for legacy linux system tray).
 
 ## Protocol
 

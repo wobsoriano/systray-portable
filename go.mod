@@ -1,4 +1,4 @@
-module github.com/wobsoriano/systray-builder
+module github.com/wobsoriano/systray-portable
 
 go 1.18
 
