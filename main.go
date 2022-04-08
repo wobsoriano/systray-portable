@@ -16,7 +16,6 @@ import (
 )
 
 func main() {
-	// Should be called at the very beginning of main().
 	systray.Run(onReady, onExit)
 }
 
