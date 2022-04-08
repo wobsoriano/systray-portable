@@ -1,4 +1,4 @@
-module example.com/fyne-test
+module example.com/systray-builder
 
 go 1.18
 
