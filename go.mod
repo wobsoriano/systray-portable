@@ -1,4 +1,4 @@
-module example.com/systray-builder
+module github.com/wobsoriano/systray-builder
 
 go 1.18
 
