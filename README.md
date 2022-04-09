@@ -86,3 +86,7 @@ tray binary =>
 ```sh
 $ ./build.sh
 ```
+
+## Used by
+
+- https://github.com/wobsoriano/deno-systray
