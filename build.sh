@@ -1,21 +1,35 @@
-#/bin/sh
+#!/usr/bin/env bash
 
 PLATFORM=
 
-if [[ $PLATFORM == "darwin" ]]
-then
-  go build -o ./release/tray_darwin -ldflags "-s -w" main.go
-elif [[ $PLATFORM == "linux" ]]
-then
-  go build -o ./release/tray_linux -ldflags "-s -w" main.go
-elif [[ $PLATFORM == "windows" ]]
-then
-  go build -o ./release/tray_windows.exe -ldflags "-s -w" main.go
-elif [[ $PLATFORM == "" ]]
-then
-  go build -o ./release/tray_windows.exe -ldflags "-s -w" main.go
-  go build -o ./release/tray_darwin -ldflags "-s -w" main.go
-  go build -o ./release/tray_linux -ldflags "-s -w" main.go
-else
-  echo Unknown platform
+package=github.com/wobsoriano/systray-portable
+
+platforms=(
+  "darwin/amd64"
+  "darwin/arm64"
+  "linux/386"
+  "linux/amd64"
+  "linux/arm64"
+  "windows/386"
+  "windows/amd64"
+)
+
+if [[ -n ${1:-$PLATFORM} ]]; then
+  platforms=("${1:-$PLATFORM}")
 fi
+
+for platform in "${platforms[@]}"; do
+  export GOOS=${platform%/*} GOARCH=${platform#*/}
+  output_name="tray_${GOOS}_${GOARCH}"
+
+  if [[ $GOOS == "windows" ]]; then
+    output_name+=".exe"
+  fi
+
+  echo -e "Building $platform...\n"
+
+  if ! go build -o "./release/$output_name" $package; then
+    echo -e "\nFailed to build $platform"
+    exit 1
+  fi
+done
